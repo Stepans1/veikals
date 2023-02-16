@@ -6,6 +6,7 @@ $servername = "localhost";
 $database = "veikals";
 $username = "root";
 $password = "";
+$_SESSION['done'] = 'registracija ir pabeikta';
 
 $conn = mysqli_connect($servername, $username, $password, $database);
 
@@ -38,10 +39,10 @@ if (empty($email and $password and $password_check and $full_name and $phone))
 INSERT INTO `klients` (  `id`,`k_pasts`, `k_password`,
 `k_vards_uzvards`, `k_mob_talr`, `k_atels`) 
 VALUES (NULL, ' $email', '$password', ' $full_name', '$phone ', ' $path')");
-      $_SESSION['message'] = 'Registracija ir pabeikta';
+
 
       header('Location:login.php');
-      echo $_SESSION['message'];
+
   }
   else
   {
