@@ -1,22 +1,27 @@
 <?php
-  session_start();
-  require_once 'connect.php';
 
-$servername = "localhost";
-$database = "veikals";
-$username = "root";
-$password = "";
+session_start();
+require_once 'connect.php';
+
 $_SESSION['done'] = 'registracija ir pabeikta';
 
-$conn = mysqli_connect($servername, $username, $password, $database);
 
-  $email = $_POST['email'];
-  $password = $_POST['password'];
-  $password_check = $_POST['password_check'];
-  $full_name = $_POST['full_name'];
-  $phone = $_POST['phone'];
-if (empty($email and $password and $password_check and $full_name and $phone))
+  $email = $_POST['email'] ?? null;
+  $password = $_POST['password'] ?? null;
+  $password_check = $_POST['password_check'] ?? null;
+  $full_name = $_POST['full_name'] ?? null;
+  $phone = $_POST['phone'] ?? null;
+
+$formFields = [];
+
+foreach ($formFields as $item) {
+  if ($item === null && preg_match('test@test.lv', $item))
+}
+
+if ($email === null)
 {
+    $errors[] = ['email_error' => 'Email is empty'];
+
     $_SESSION['message'] = 'Ir tukši lauki!!!';
 
     header('Location:reg.php');
@@ -51,4 +56,5 @@ VALUES (NULL, ' $email', '$password', ' $full_name', '$phone ', ' $path')");
     header('Location:reg.php');
       echo $_SESSION['message'];
   }
+
 
