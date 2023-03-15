@@ -1,60 +1,79 @@
 <?php
-
-session_start();
-require_once 'connect.php';
-
-$_SESSION['done'] = 'registracija ir pabeikta';
+    session_start();
+    //require_once 'connect.php';
 
 
-  $email = $_POST['email'] ?? null;
-  $password = $_POST['password'] ?? null;
-  $password_check = $_POST['password_check'] ?? null;
-  $full_name = $_POST['full_name'] ?? null;
-  $phone = $_POST['phone'] ?? null;
+    $servername = "localhost";
+    $database = "veikals";
+    $username = "root";
+    $password = "";
+    $_SESSION['done'] = 'registracija ir pabeikta';
 
-$formFields = [];
+    $conn = mysqli_connect($servername, $username, $password, $database);
 
-foreach ($formFields as $item) {
-  if ($item === null && preg_match('test@test.lv', $item))
-}
+    $errors = [];
 
-if ($email === null)
+    $email = empty($_POST['email']) ? null : $_POST['email'];
+    $password = empty($_POST['password']) ? null : $_POST['password'];
+    $password_check = empty($_POST['password_check']) ? null : $_POST['password_check'];
+    $full_name = empty($_POST['full_name']) ? null : $_POST['full_name'];
+    $phone = empty($_POST['phone']) ? null : $_POST['phone'];
+    trim($email);
+
+
+
+   // if ($email === null) {
+   //     $errors['name'] = 'Name is empty';
+  //  }
+
+$empty=mysqli_query($conn,"SELECT `k_pasts` FROM `klients` where `k_pasts` like '%$email'");
+if (mysqli_num_rows($empty)>0)
 {
-    $errors[] = ['email_error' => 'Email is empty'];
-
-    $_SESSION['message'] = 'Ir tukši lauki!!!';
-
+    $_SESSION['message'] = 'Šis pasts ir aiznemts.';
     header('Location:reg.php');
-    echo $_SESSION['message'];
+exit();
+
 }
-  if ($password === $password_check)
+$formFields = [$email,$phone,$password,$full_name];
+$bool=true;
+  $errors = [];
+  foreach ($formFields as $field) {
+      if ($field === null) {
+          $bool=false;
+          $_SESSION['message'] = 'Some fields are empty.';
+          header('Location:reg.php');
+          break;
+      }
+  }
+
+
+  if ($password === $password_check && !empty($_POST['password'] && !empty($_POST['phone']) && !empty($_POST['email']) && !empty($_POST['full_name'])))
   {
- // $_FILES['avatar']['name'];
+ $_FILES['avatar']['name'];
       $path='picture/' .time() . $_FILES['avatar']['name'] ;
 
-      if(!move_uploaded_file($_FILES['avatar']['tmp_name'],  $path))
-      {
-          $_SESSION['message'] = 'Oshibka pri zagruzke soobshenija';
 
-          header('Location:reg.php');
-          echo $_SESSION['message'];
-      }
-      $password=md5($password);
+     // $password=md5($password);
       mysqli_query($conn,"
-INSERT INTO `klients` (  `id`,`k_pasts`, `k_password`,
-`k_vards_uzvards`, `k_mob_talr`, `k_atels`) 
+INSERT INTO `klients` (  `k_id`,`k_pasts`, `k_parole`,
+`k_full_name`, `k_talrunis`, `k_atels`)
 VALUES (NULL, ' $email', '$password', ' $full_name', '$phone ', ' $path')");
 
-
-      header('Location:login.php');
+//      mysqli_close($conn);
+      header('Location:reg.php');
 
   }
   else
   {
-     $_SESSION['message'] = 'Password is not correct';
+     $_SESSION['message'] = 'Password is not correct or Some fields are empty.';
 
     header('Location:reg.php');
       echo $_SESSION['message'];
   }
+
+
+
+
+
 
 
