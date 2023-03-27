@@ -1,3 +1,10 @@
+<?php
+require_once 'connect.php';
+session_start();
+require_once 'func.php';
+$product= get_darzeni();
+
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -96,7 +103,7 @@
     <div class="navbar navbar-dark bg-dark shadow-sm">
         <div class="container">
             <a href="#" class="navbar-brand d-flex align-items-center">
-                <strong>Darzeņi</strong>
+                <strong>Dārzeņi</strong>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -111,10 +118,10 @@
         <div class="row py-lg-5">
             <div class="col-lg-6 col-md-8 mx-auto">
                 <h1 class="fw-light">Dārzeņi</h1>
-                <p class="lead text-muted">Šeit jus varat iveleties svaigus dārzeņus</p>
+                <p class="lead text-muted">Šeit jus varat iveleties svaigus dārzeņus un ne tikai</p>
                 <p>
                     <a href="#" class="btn btn-primary my-2">Grozs</a>
-                    <a href="recepti.php" class="btn btn-secondary my-2">Recepti </a>
+                    <a href="parastie_prod.php" class="btn btn-secondary my-2">Pie produktiem </a>
                 </p>
             </div>
         </div>
@@ -124,143 +131,32 @@
         <div class="container">
 
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img src="picture/tomat.jpg" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text>
-                        <div class="card-body">
-                            <p class="card-text">Tomati :Ražotais:Rimi,MASSA:250 G,Cena:1 euro</p>
-                          <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Grozā</button>
+                <?php if(!empty($product)): ?>
+                    <?php foreach ($product as $product): ?>
+                        <div class="col">
 
+                            <div class="card shadow-sm">
+                                <img src="picture/<?= $product["p_attels"]?>" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text>
+                                <div class="card-body">
+                                    <p class="card-text"><?= $product["p_nosaukums"]?>, MASSA:<?=$product["p_svars"]?>, Cena:<?=$product["p_cena"]  ?></p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <!--<button  type="button" class="btn btn-sm btn-outline-secondary">Grozā</button>-->
+                                            <a href="?cart=add&id=<?=$product["p_id"]?>"class="btn btn-info btn-block add-to-cart" data-id="<?=$product["p_id"]?>">
+
+                                                <i class="btn btn-sm btn-outline-secondary">Grozā</i>
+                                            </a>
+
+                                        </div>
+
+                                    </div>
                                 </div>
-
                             </div>
+
                         </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img src="picture/chesnok.jpg" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title></title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>
-                        <div class="card-body">
-                            <p class="card-text">Ķiploks:Ražotais:BIO ,MASSA:250 G,Cena:0,80 euro</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Grozā</button>
+                    <?php endforeach; ?>
+                <?php endif; ?>
 
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img src="picture/maggi_9_gshs.jpeg" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <div class="card-body">
-                            <p class="card-text">Universalas garšvielas:Ražotais:Maggi,MASSA:200 G,Cena:0,70 euro</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Grozā</button>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img src="picture/ogurci.jpg" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <div class="card-body">
-                            <p class="card-text">Ģurķi iepakojumā:Ražotais : Rimi ,MASSA:250kg,Cena :0,50 euro </p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Grozā</button>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img src="picture/morkovka.webp" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <div class="card-body">
-                            <p class="card-text">Burkani iepakojumā:Ražotais:dmBIO,MASSA:250g,Cena:0,60 euro</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Grozā</button>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img src="picture/luk.webp" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <div class="card-body">
-                            <p class="card-text">Sīpols:Ražotais:Rimi,MASSA:300g, Cena:0,65 euro</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Grozā</button>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img src="picture/kapuata-str-004.jpg" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <div class="card-body">
-                            <p class="card-text">Kaposts:Ražotais:Olitalia,Massa:300 G,Cena:0,80 euro</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Grozā</button>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                <small class="text-muted">9 mins</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -278,8 +174,25 @@
 
 
 <script src="bootstrap/bootstrap.bundle.min.js"></script>
-
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    $('.add-to-cart').on('click',function (e){
+        e.preventDefault();
+        let id = $(this).data('id');
+        $.ajax({
+            url:'karzina.php',
+            type:'GET',
+            data:{cart:'add',id:id},
+            dataType:'json',
+            success:function (res){
+                console.log(res);
+            },
+            error:function () {
+                alert('Error1');
+            }
+        });
+    });
+</script>
 
 </body>
 </html>
-

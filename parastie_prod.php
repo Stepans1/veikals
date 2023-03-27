@@ -1,5 +1,6 @@
 <?php
     require_once 'connect.php';
+   session_start();
 require_once 'func.php';
 $product= get_prost_produkt();
 
@@ -14,7 +15,7 @@ $product= get_prost_produkt();
     <meta name="generator" content="Hugo 0.108.0">
     <title>Album example · Bootstrap v5.3</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/album/">
+   <!-- <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/album/">-->
 
 
 
@@ -130,113 +131,31 @@ $product= get_prost_produkt();
         <div class="container">
 
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img src="picture/makaroni2.webp" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text>
-                        <div class="card-body">
-                            <p class="card-text">Makaroni :Ražotais Dobele,MASSA:500 G,Cena:1,98 euro</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Grozā</button>
+                <?php if(!empty($product)): ?>
+                <?php foreach ($product as $product): ?>
+                        <div class="col">
 
+                            <div class="card shadow-sm">
+                                <img src="picture/<?= $product["p_attels"]?>" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text>
+                                <div class="card-body">
+                                    <p class="card-text"><?= $product["p_nosaukums"]?>, MASSA:<?=$product["p_svars"]?>, Cena:<?=$product["p_cena"]  ?></p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <!--<button  type="button" class="btn btn-sm btn-outline-secondary">Grozā</button>-->
+                                            <a href="?cart=add&id=<?=$product["p_id"]?>"class="btn btn-info btn-block add-to-cart" data-id="<?=$product["p_id"]?>">
+
+                                                <i class="btn btn-sm btn-outline-secondary">Grozā</i>
+                                            </a>
+
+                                        </div>
+
+                                    </div>
                                 </div>
-
                             </div>
+
                         </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img src="picture/malta.png" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title></title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>
-                        <div class="card-body">
-                            <p class="card-text">Malta cūkgaļa:Ražotais:BEST BUTCHER ,MASSA:450 G,Cena:2,67 euro</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Grozā</button>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img src="picture/risi.webp" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <div class="card-body">
-                            <p class="card-text">Risi:Ražotais:Dobele,MASSA:500 G,Cena:1,80 euro</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Grozā</button>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img src="picture/korova.webp" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <div class="card-body">
-                            <p class="card-text">Liellopu gaļa:Ražotais : Rimi ,MASSA:1kg,Cena :8 euro </p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Grozā</button>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img src="picture/kuskus2.webp" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <div class="card-body">
-                            <p class="card-text">Kus kus:Ražotais:dmBIO,MASSA:500g,Cena:2 euro</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Grozā</button>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img src="picture/retchup.png" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <div class="card-body">
-                            <p class="card-text">Kečups:Ražotais:Spilve,MASSA:500g, Cena:1,90 euro</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Grozā</button>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img src="picture/ella2.webp" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <div class="card-body">
-                            <p class="card-text">Saulespuķu eļļa:Ražotais:Olitalia,Tilpims:1L,Cena:2,50 euro</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Grozā</button>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php endforeach; ?>
+                <?php endif; ?>
 
             </div>
         </div>
@@ -256,6 +175,24 @@ $product= get_prost_produkt();
 
 <script src="bootstrap/bootstrap.bundle.min.js"></script>
 
-
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    $('.add-to-cart').on('click',function (e){
+        e.preventDefault();
+        let id = $(this).data('id');
+      $.ajax({
+          url:'karzina.php',
+          type:'GET',
+          data:{cart:'add',id:id},
+          dataType:'json',
+          success:function (res){
+              console.log(res);
+          },
+          error:function () {
+              alert('Error');
+          }
+      });
+    });
+</script>
 </body>
 </html>
