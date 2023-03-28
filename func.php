@@ -50,3 +50,23 @@ function get_produkt(int $id)
     $stmt->execute([$id]);
     return $stmt->fetchObject();
 }
+function add_to_cart($prod):void
+{
+       if (isset($_SESSION['cart'][$prod['p_id']]))
+       {
+           $_SESSION['cart'][$prod['id']]['qty']+=1;
+       }
+       else
+       {
+           $_SESSION['cart'][$prod['p_id']]=[
+               'nosaukums'=>$prod['p_nosaukums'],
+               'svars'=>$prod['p_svars'],
+               'attels'=>$prod['p_attels'],
+               'cena'=>$prod['p_cena'],
+               'qty'=>$prod['qty']
+           ];
+       }
+       $_SESSION['cart.qty']=!empty($_SESSION['cart.qty'])? ++$_SESSION['cart.qty']:1;
+       $_SESSION['cart.sum']=!empty($_SESSION['cart.sum'])? $_SESSION['cart.sum']+$prod['p_cena']:$prod['p_cena'];
+
+}

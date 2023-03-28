@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 //require_once 'connect.php';
 require_once 'func.php';
 $servername = "localhost";
@@ -20,7 +20,13 @@ if (isset($_GET['cart']))
            $prod=get_produkt($id);
 
            header('Content-Type: application/json');
-            echo json_encode(['code'=>'ok','answer'=>$prod], JSON_UNESCAPED_UNICODE);
+           //add_to_cart($prod);
+           // echo json_encode(['code'=>'ok','answer'=>$prod], JSON_UNESCAPED_UNICODE);
+            $arr=json_decode(json_encode($prod),true);
+            add_to_cart($arr);
+          //json_decode(add_to_cart($prod),true);
+            //$result = (array) json_decode($prod);
+           // $z=strval($result);
             break;
     }
 }

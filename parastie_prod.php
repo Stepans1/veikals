@@ -3,10 +3,13 @@
    session_start();
 require_once 'func.php';
 $product= get_prost_produkt();
+require_once 'karzina.php'
 
 ?>
+
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,7 +22,7 @@ $product= get_prost_produkt();
 
 
 
-
+<?php debug($_SESSION);?>
 
     <link href="bootstrap/bootstrap.min.css" rel="stylesheet" >
 
@@ -172,10 +175,10 @@ $product= get_prost_produkt();
     </div>
 </footer>
 
-
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="bootstrap/bootstrap.bundle.min.js"></script>
 
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
 <script>
     $('.add-to-cart').on('click',function (e){
         e.preventDefault();
