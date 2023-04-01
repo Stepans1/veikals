@@ -22,7 +22,8 @@ require_once 'karzina.php'
 
 
 
-<?php debug($_SESSION);?>
+<?php debug($_SESSION);
+// session_destroy()?>
 
     <link href="bootstrap/bootstrap.min.css" rel="stylesheet" >
 
@@ -192,7 +193,7 @@ require_once 'karzina.php'
               console.log(res);
           },
           error:function () {
-              alert('Error');
+              alert('Error32');
           }
       });
     });

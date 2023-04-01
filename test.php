@@ -1,3 +1,10 @@
+<?php
+//require_once 'signin.php';
+session_start();
+
+if(isset($_SESSION['user'])) { echo $_SESSION['user']; }
+unset($_SESSION['user']);
+?>
 <!doctype html>
 <html lang="en">
 <head>

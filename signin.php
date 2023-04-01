@@ -26,17 +26,18 @@ if (mysqli_num_rows($stmt) > 0)
 {
     $user=mysqli_fetch_assoc($stmt);
 
-    var_dump($user); die;
+    var_dump($user);
 
+    header('Location:test.php');
    // $_SESSION['user']=[
      //       "id"=> $user['id'],
        //     "full_name" => $user['full_name'],
          //   "phone" => $user['phone'],
            // "email" => $user['email'],
-            //"avatar" => $user['avatar']
+             //"avatar" => $user['avatar']
     //];
 
-    header('Location:test.php');
+
 }
 else
 {
