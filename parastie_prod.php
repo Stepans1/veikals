@@ -22,8 +22,8 @@ require_once 'karzina.php'
 
 
 
-<?php debug($_SESSION);
-// session_destroy()?>
+<?php //debug($_SESSION);
+ //session_destroy()?>
 
     <link href="bootstrap/bootstrap.min.css" rel="stylesheet" >
 
@@ -124,13 +124,67 @@ require_once 'karzina.php'
                 <h1 class="fw-light">Parastie produkti</h1>
                 <p class="lead text-muted">Šeit jus varat iveleties sev nepieciešamo produktu</p>
                 <p>
-                    <a href="#" class="btn btn-primary my-2">Grozs</a>
+                    <button  class="btn btn-danger " data-bs-toggle="modal" data-bs-target="#modalExample">Grozs<span class="badge"><?=$_SESSION['cart.qty']??0 ?></span></button>
                     <a href="darzeni.php" class="btn btn-secondary my-2">Pie dārziņiem </a>
                 </p>
             </div>
         </div>
     </section>
+    <!-- Modal -->
+<div class="modal fade" id="modalExample" tabindex="-1" aria-bs-labelledby="modalExampleLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+             <h5 class="modal-title" id="modalExampleLabel">Grozs</h5>
+                <button class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+            </div>
+            <div class="modal-body">
+                <?php if (!empty($_SESSION['cart'])): ?>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Attels</th>
+                            <th scope="col">Nosaukums</th>
+                            <th scope="col">Cena</th>
+                            <th scope="col">Daudzums</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($_SESSION['cart'] as $id => $item): ?>
+                            <tr>
+                                <td><a href="#"><img src="picture/<?= $item['attels'] ?>"width="40%"  alt="<?= $item['nosaukums'] ?>"></a></td>
+                                <td><a href="#"><?= $item['nosaukums'] ?></a></td>
+                                <td><?= $item['cena'] ?></td>
+                                <td><?= $item['qty'] ?></td>
+                            </tr>
+                        <?php endforeach; ?>
 
+                        <tr>
+                            <td colspan="4" align="right">Preces: <span id="modal-cart-qty"><?= $_SESSION['cart.qty'] ?></span>
+                                <br> Summa <?= $_SESSION['cart.sum'] ?> .
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                <?php else: ?>
+                    <p>Grozs ir tukš...</p>
+                <?php endif; ?>
+            </div>
+            <div class="modal-footer">
+                <?php if (!empty($_SESSION['cart'])): ?>
+                    <button type="button" class="btn btn-primary">Apmaksāt</button>
+<form method="post">
+                    <button name="qw" value="0" type="submit" class="btn btn-danger" id="clear-cart">Notirīt grozu</button>
+                    </form>
+
+                <?php endif; ?>
+                <?php
+
+                ?>
+            </div>
+        </div>
+    </div>
+</div>
     <div class="album py-5 bg-light">
         <div class="container">
 
@@ -148,7 +202,7 @@ require_once 'karzina.php'
                                             <!--<button  type="button" class="btn btn-sm btn-outline-secondary">Grozā</button>-->
                                             <a href="?cart=add&id=<?=$product["p_id"]?>"class="btn btn-info btn-block add-to-cart" data-id="<?=$product["p_id"]?>">
 
-                                                <i class="btn btn-sm btn-outline-secondary">Grozā</i>
+                                                <i class="btn btn-sm btn-outline-secondary">Grozā.</i>
                                             </a>
 
                                         </div>
@@ -164,7 +218,6 @@ require_once 'karzina.php'
             </div>
         </div>
     </div>
-
 </main>
 
 <footer class="text-muted py-5">
@@ -181,8 +234,14 @@ require_once 'karzina.php'
 
 
 <script>
+    function showCart(cart){
+        $('#modalExample .modal-cart-content').html(cart);
+        $('#modalExample').Modal();
+    }
+
     $('.add-to-cart').on('click',function (e){
         e.preventDefault();
+        location.reload();
         let id = $(this).data('id');
       $.ajax({
           url:'karzina.php',
@@ -190,13 +249,17 @@ require_once 'karzina.php'
           data:{cart:'add',id:id},
           dataType:'json',
           success:function (res){
-              console.log(res);
+             // console.log(res);
+              showCart();
           },
           error:function () {
               alert('Error32');
           }
       });
     });
+
+
+
 </script>
 </body>
 </html>

@@ -27,6 +27,10 @@ if (isset($_GET['cart']))
           //  json_decode($json,true);
           //  add_to_cart($arr);
              add_to_cart($json);
+             ob_start();
+             require __DIR__.'/modal-korzina.php';
+             $cart=ob_get_clean();
+             echo json_encode(['code'=>'ok','answer'=>$cart]);
           //json_decode(add_to_cart($prod),true);
             //$result = (array) json_decode($prod);
            // $z=strval($result);

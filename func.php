@@ -71,3 +71,7 @@ function add_to_cart($prod):void
        $_SESSION['cart.sum']=!empty($_SESSION['cart.sum'])? $_SESSION['cart.sum']+$prod['p_cena']:$prod['p_cena'];
 
 }
+function reload()
+{
+    session_destroy();
+}
