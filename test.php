@@ -1,9 +1,10 @@
 <?php
 //require_once 'signin.php';
+require_once 'func.php';
 session_start();
 
-if(isset($_SESSION['user'])) { echo $_SESSION['user']; }
-unset($_SESSION['user']);
+//debug($_SESSION['user']);
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -92,7 +93,7 @@ unset($_SESSION['user']);
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Profils</a>
+                        <a class="nav-link active" aria-current="page" href="profil.php">Profils</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="parastie_prod.php">Produkti</a>

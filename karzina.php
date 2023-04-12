@@ -16,8 +16,8 @@ if (isset($_GET['cart']))
     switch ($_GET['cart']){
         case 'add':
 
-            $id=isset($_GET['id'])?(int)$_GET['id']:0;
-           $prod=get_produkt($id);
+            $pir_id=isset($_GET['id'])?(int)$_GET['id']:0;
+           $prod=get_produkt($pir_id);
 
            header('Content-Type: application/json');
 

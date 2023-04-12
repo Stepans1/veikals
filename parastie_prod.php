@@ -172,8 +172,9 @@ require_once 'karzina.php'
             </div>
             <div class="modal-footer">
                 <?php if (!empty($_SESSION['cart'])): ?>
-                    <button type="button" class="btn btn-primary">Apmaksāt</button>
-<form method="post">
+                    <button  type="button" class="btn btn-primary"><a href="apmaksa.php" class="text-white">Apmaksāt</a></button>
+
+                    <form method="post">
                     <button name="qw" value="0" type="submit" class="btn btn-danger" id="clear-cart">Notirīt grozu</button>
                     </form>
 
@@ -256,6 +257,24 @@ require_once 'karzina.php'
               alert('Error32');
           }
       });
+    });
+    $('#clear-cart').on('click',function (e){
+        e.preventDefault();
+
+
+        $.ajax({
+            url:'clear.php',
+            type:'GET',
+
+
+            success:function (res){
+                 console.log(res);
+
+            },
+            error:function () {
+                alert('Error32');
+            }
+        });
     });
 
 

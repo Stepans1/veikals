@@ -1,7 +1,7 @@
 <?php
     session_start();
     //require_once 'connect.php';
-
+//namespace test;
 
     $servername = "localhost";
     $database = "veikals";
@@ -27,6 +27,10 @@
   //  }
 
 $empty=mysqli_query($conn,"SELECT `k_pasts` FROM `klients` where `k_pasts` like '%$email'");
+
+$stmt_id="SELECT `k_id` FROM `klients` where `k_pasts` like '%$email'";
+global $stm_id;
+$stm_id=$conn->query($stmt_id);
 if (mysqli_num_rows($empty)>0)
 {
     $_SESSION['message'] = 'Šis pasts ir aiznemts.';

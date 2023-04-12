@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-
+require_once 'func.php';
 require_once 'connect.php';
 $servername = "localhost";
 $database = "veikals";
@@ -13,7 +13,7 @@ $email = empty($_POST['login']) ? null : $_POST['login'];
 $password = empty($_POST['password']) ? null : $_POST['password'];
 
 //$password=md5($password);
-$stmt = mysqli_query($conn,"SELECT `k_pasts`,`k_atels`,`k_full_name` FROM `klients` where `k_pasts` like '%$email' and `k_parole` like '%$password'");
+$stmt = mysqli_query($conn,"SELECT `k_id`,`k_pasts`,`k_atels`,`k_full_name`,`k_parole`,`k_talrunis` FROM `klients` where `k_pasts` like '%$email' and `k_parole` like '%$password'");
 
 if (empty($_POST['password'])  || empty($_POST['login']))
 {
@@ -26,16 +26,10 @@ if (mysqli_num_rows($stmt) > 0)
 {
     $user=mysqli_fetch_assoc($stmt);
 
-    var_dump($user);
-
+    debug($user);
+    $_SESSION['user'] = $user;
     header('Location:test.php');
-   // $_SESSION['user']=[
-     //       "id"=> $user['id'],
-       //     "full_name" => $user['full_name'],
-         //   "phone" => $user['phone'],
-           // "email" => $user['email'],
-             //"avatar" => $user['avatar']
-    //];
+
 
 
 }

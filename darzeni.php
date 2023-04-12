@@ -1,9 +1,12 @@
+
+
+
 <?php
 require_once 'connect.php';
 session_start();
 require_once 'func.php';
 $product= get_darzeni();
-
+require_once 'karzina.php'
 ?>
 <!doctype html>
 <html lang="en">
@@ -120,13 +123,67 @@ $product= get_darzeni();
                 <h1 class="fw-light">Dārzeņi</h1>
                 <p class="lead text-muted">Šeit jus varat iveleties svaigus dārzeņus un ne tikai</p>
                 <p>
-                    <a href="#" class="btn btn-primary my-2">Grozs</a>
+                    <button  class="btn btn-danger " data-bs-toggle="modal" data-bs-target="#modalExample">Grozs<span class="badge"><?=$_SESSION['cart.qty']??0 ?></span></button>
                     <a href="parastie_prod.php" class="btn btn-secondary my-2">Pie produktiem </a>
                 </p>
             </div>
         </div>
     </section>
+    <!-- Modal -->
+    <div class="modal fade" id="modalExample" tabindex="-1" aria-bs-labelledby="modalExampleLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalExampleLabel">Grozs</h5>
+                    <button class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+                </div>
+                <div class="modal-body">
+                    <?php if (!empty($_SESSION['cart'])): ?>
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">Attels</th>
+                                <th scope="col">Nosaukums</th>
+                                <th scope="col">Cena</th>
+                                <th scope="col">Daudzums</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php foreach ($_SESSION['cart'] as $id => $item): ?>
+                                <tr>
+                                    <td><a href="#"><img src="picture/<?= $item['attels'] ?>"width="40%"  alt="<?= $item['nosaukums'] ?>"></a></td>
+                                    <td><a href="#"><?= $item['nosaukums'] ?></a></td>
+                                    <td><?= $item['cena'] ?></td>
+                                    <td><?= $item['qty'] ?></td>
+                                </tr>
+                            <?php endforeach; ?>
 
+                            <tr>
+                                <td colspan="4" align="right">Preces: <span id="modal-cart-qty"><?= $_SESSION['cart.qty'] ?></span>
+                                    <br> Summa <?= $_SESSION['cart.sum'] ?> .
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    <?php else: ?>
+                        <p>Grozs ir tukš...</p>
+                    <?php endif; ?>
+                </div>
+                <div class="modal-footer">
+                    <?php if (!empty($_SESSION['cart'])): ?>
+                        <button  type="button" class="btn btn-primary"><a href="apmaksa.php" class="text-white">Apmaksāt</a></button>
+                        <form method="post">
+                            <button name="qw" value="0" type="submit" class="btn btn-danger" id="clear-cart">Notirīt grozu</button>
+                        </form>
+
+                    <?php endif; ?>
+                    <?php
+
+                    ?>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="album py-5 bg-light">
         <div class="container">
 
@@ -189,6 +246,24 @@ $product= get_darzeni();
             },
             error:function () {
                 alert('Error1');
+            }
+        });
+    });
+    $('#clear-cart').on('click',function (e){
+        e.preventDefault();
+
+
+        $.ajax({
+            url:'clear.php',
+            type:'GET',
+
+
+            success:function (res){
+                console.log(res);
+
+            },
+            error:function () {
+                alert('Error32');
             }
         });
     });
