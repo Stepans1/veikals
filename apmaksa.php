@@ -117,40 +117,22 @@
             </div>
             <div class="col-md-7 col-lg-8">
                 <h4 class="mb-3">Piegādes noformēšana </h4>
-                <form class="needs-validation" novalidate>
                     <div class="row g-3">
+                        <form class="needs-validation" action="pay.php" method="post">
 
-
-
-
-
-
-                 <form action="pay.php" method="post"  >
-
-                        <div  class="col-12">
-                            <label for="address" class="form-label">Adrese</label>
-                            <input  type="text"  class="form-control"  name="adrese" placeholder="Аntonijas 2, Rīga LV-1010 " >
-                            <div class="invalid-feedback">
-                                Please enter your shipping address.
-                            </div>
-                        </div>
-
-                </form >
-
-
-                 <form action="pay.php" method="get" >
-
+                                <div  class="col-12">
+                                    <label for="address" class="form-label">Adrese</label>
+                                    <input  type="text"  class="form-control"  name="adrese" placeholder="Аntonijas 2, Rīga LV-1010 ">
+                                    <div class="invalid-feedback">Please enter your shipping address.</div>
+                                </div>
+                           <!--  <button class="w-100 btn btn-primary btn-lg" type="submit">Noformēt</button>-->
 
                     </div>
 
+
                     <hr class="my-4">
 
-
-
-
-
                     <h4 class="mb-3">Payment</h4>
-
 
                     <div class="row gy-3">
                         <div class="col-md-6">
@@ -188,10 +170,17 @@
                     </div>
 
                     <hr class="my-4">
+                <button class="w-100 btn btn-primary btn-lg" type="submit">Noformēt</button>
+<p >
+    <?php
 
-                    <input  type="submit" class="form-control"  name="submit"href="pay.php"  >
+    if(isset($_SESSION['message'])) { echo $_SESSION['message']; }
+    unset($_SESSION['message']);
+    ?>
+</p>
+                    <!--<input  type="submit" class="form-control"  name="submit"href="pay.php"  >-->
 
-                   <button class="w-100 btn btn-primary btn-lg" type="submit"><a href="pay.php" class="text-white">Noformēt</a></button>
+                   <!--<button class="w-100 btn btn-primary btn-lg" type="submit"><a href="pay.php" class="text-white">Noformēt</a></button>-->
                 </form>
             </div>
         </div>

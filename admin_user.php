@@ -3,7 +3,7 @@ $servername = "localhost";
 $database = "veikals";
 $username = "root";
 $password = "";
-$_SESSION['done'] = 'registracija ir pabeikta';
+
 
 $conn = mysqli_connect($servername, $username, $password, $database);
 session_start();
@@ -38,6 +38,8 @@ session_start();
     }
 </style>
 <body>
+<a href="admin_preces.php"><h3>Preces</h3></a>
+<a href="#"><h3>Pasutijumi</h3></a>
 <table>
 <tr>
     <th>k_id</th>

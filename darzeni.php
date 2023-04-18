@@ -122,6 +122,9 @@ require_once 'karzina.php'
             <div class="col-lg-6 col-md-8 mx-auto">
                 <h1 class="fw-light">Dārzeņi</h1>
                 <p class="lead text-muted">Šeit jus varat iveleties svaigus dārzeņus un ne tikai</p>
+                <table align="left">
+                    <tr><td>test tabl</td></tr>
+                </table>
                 <p>
                     <button  class="btn btn-danger " data-bs-toggle="modal" data-bs-target="#modalExample">Grozs<span class="badge"><?=$_SESSION['cart.qty']??0 ?></span></button>
                     <a href="parastie_prod.php" class="btn btn-secondary my-2">Pie produktiem </a>
@@ -184,6 +187,7 @@ require_once 'karzina.php'
             </div>
         </div>
     </div>
+    <!--Modal end-->
     <div class="album py-5 bg-light">
         <div class="container">
 

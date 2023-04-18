@@ -113,13 +113,97 @@
                 <h1 class="fw-light">Recepti</h1>
                 <p class="lead text-muted">Recepti uz katru dienu</p>
                 <p>
-                    <a href="#" class="btn btn-primary my-2">Grozs</a>
+                    <button  class="btn btn-danger " data-bs-toggle="modal" data-bs-target="#modalExample">Grozs<span class="badge"><?=$_SESSION['cart.qty']??0 ?></span></button>
                     <a href="test.php" class="btn btn-secondary my-2">Home </a>
                 </p>
             </div>
         </div>
     </section>
+    <!-- Modal grozs -->
+    <div class="modal fade" id="modalExample" tabindex="-1" aria-bs-labelledby="modalExampleLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalExampleLabel">Grozs</h5>
+                    <button class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+                </div>
+                <div class="modal-body">
+                    <?php if (!empty($_SESSION['cart'])): ?>
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">Attels</th>
+                                <th scope="col">Nosaukums</th>
+                                <th scope="col">Cena</th>
+                                <th scope="col">Daudzums</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php foreach ($_SESSION['cart'] as $id => $item): ?>
+                                <tr>
+                                    <td><a href="#"><img src="picture/<?= $item['attels'] ?>"width="40%"  alt="<?= $item['nosaukums'] ?>"></a></td>
+                                    <td><a href="#"><?= $item['nosaukums'] ?></a></td>
+                                    <td><?= $item['cena'] ?></td>
+                                    <td><?= $item['qty'] ?></td>
+                                </tr>
+                            <?php endforeach; ?>
 
+                            <tr>
+                                <td colspan="4" align="right">Preces: <span id="modal-cart-qty"><?= $_SESSION['cart.qty'] ?></span>
+                                    <br> Summa <?= $_SESSION['cart.sum'] ?> .
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    <?php else: ?>
+                        <p>Grozs ir tukš...</p>
+                    <?php endif; ?>
+                </div>
+                <div class="modal-footer">
+                    <?php if (!empty($_SESSION['cart'])): ?>
+                        <button  type="button" class="btn btn-primary"><a href="apmaksa.php" class="text-white">Apmaksāt</a></button>
+                        <form method="post">
+                            <button name="qw" value="0" type="submit" class="btn btn-danger" id="clear-cart">Notirīt grozu</button>
+                        </form>
+
+                    <?php endif; ?>
+                    <?php
+
+                    ?>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal grozs end -->
+
+    <!--Modal kus kus-->
+    <div class="modal fade" id="modalExample1" tabindex="-1" aria-bs-labelledby="modalExampleLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalExampleLabel">Recepts</h5>
+                    <button class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+                </div>
+                <div class="modal-body">
+<h3>1. sols.<br> Uzkarsē cepeškrāsni līdz 200°C. Sagrieziet dārzeņus lielos gabalos.
+    Nenotīriet ķiplokus. Kārto uz cepešpannas, pārlej 2 ēd.k. l.
+    olīveļļu, pievieno sāli un piparus. Kārtīgi samaisa. Cep 20 min.</h3>
+<h3>2. sols.<br>
+    Tikmēr pagatavojiet kuskusu atbilstoši iepakojuma norādījumiem.</h3>
+<h3>3.sols.<br>
+    Atsevišķā traukā izspiediet apgrauzdēto ķiploku no mizas, sasmalciniet to ar dakšiņu pastā un atgriežiet atpakaļ.</h3>
+<h3>4.sols<br>
+    Lielā salātu bļodā iemet kuskusu ar dārziniem.</h3>
+                </div>
+                <div class="modal-footer">
+                    <h3>Visus nepieciešamus produktus jūs varat nopirkt mūsu veikalā.</h3>
+                    <button  type="button" class="btn btn-primary"><a href="#" class="text-white">Apmaksāt</a></button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal kus kus end-->
     <div class="album py-5 bg-light">
         <div class="container">
 
@@ -161,8 +245,7 @@
                             <p class="card-text">Kus kus</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">recepts</button>
-
+                                    <button  class="btn btn-danger " data-bs-toggle="modal" data-bs-target="#modalExample1">Recepts<span class="badge"></span></button>
                                 </div>
 
                             </div>

@@ -9,7 +9,14 @@ $password = "";
 
 
 $conn = mysqli_connect($servername, $username, $password, $database);
+$adrese=empty($_POST['adrese']) ? null : $_POST['adrese'];
 
+if ($adrese===null)
+{
+    $_SESSION['message'] = 'Some fields are empty.';
+    header('Location:apmaksa.php');
+
+}
 //$adres = empty($_POST['adrese1']) ? null : $_POST['adrese1'];
 //$adrese=isset($_GET['adrese'])? null:$_GET['adrese'] ;
 //$kid=$GLOBALS['stm_id'];
@@ -20,13 +27,23 @@ foreach ($_SESSION['cart'] as $id=>$item ):
     debug((array)$item['qty']);
     echo '------------';
 endforeach;
-foreach ($_SESSION['user'] as $id=>$item ):
 
-debug((array)$item['email']);
-endforeach;
+//foreach ($_SESSION['user'] as $id=>$item ):
+echo 'User:';
+var_dump($_SESSION['user']['k_id']);
+$user=$_SESSION['user']['k_id'];
+echo $adrese;
+//endforeach;
 //debug($_SESSION['user']['k_id']);
 //echo $adres;
 //global $stm_id;
-$adrese=$_POST['adrese'];
-echo $_SESSION['user'];
-echo $adrese;
+//$adrese=$_POST['adrese'];
+foreach ($_SESSION['cart'] as $id=>$item):
+    $qty=$item['qty'];
+mysqli_query($conn,"INSERT INTO `pasutijums` (`pa_id`, `kl_id`, `pa_adrese`, `p_id`, `qty`) VALUES (NULL, '$user', '$adrese', '$id', '$qty' )");
+endforeach;
+mysqli_query($conn,"DELETE FROM `pasutijums` WHERE pa_adrese='0'");
+unset($_SESSION['cart']);
+unset($_SESSION['cart.qty']);
+unset($_SESSION['cart.sum']);
+header("location:test.php");

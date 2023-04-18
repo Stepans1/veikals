@@ -43,13 +43,16 @@ include 'func.php';
     <form>
         <lable>Pasts</lable>
         <td><a href="#"><?= $_SESSION['user']['k_pasts'] ?></a><a style="color: red"  href="#">Nomainit pasts</a></td>
+        <h3>-------------------------</h3>
         <lable>Password</lable>
         <td><a href="#"><?= $_SESSION['user']['k_parole'] ?></a><a style="color: red"  href="#">Nomainit paroli</a></td>
-
+        <h3>-------------------------</h3>
         <lable>Vards Uzvards</lable>
         <td><a href="#"><?= $_SESSION['user']['k_full_name'] ?></a></td>
+        <h3>-------------------------</h3>
         <lable>Mob Talrunis</lable>
         <td><a href="#"><?= $_SESSION['user']['k_talrunis'] ?></a><a style="color: red"  href="#">Nomainit numuru</a></td>
+        <h3>-------------------------</h3>
         <lable>Profila atels</lable>
         <p><img src="picture/<?php try{ $_SESSION['user']['k_atels'];}catch (Throwable){echo 'Jums nau attela';} ?>" width="80px" height="80px" ><a style="color: red"  href="#">Nomainit attelu</a></p>
         <p>
