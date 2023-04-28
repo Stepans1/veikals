@@ -57,7 +57,7 @@ $bool=true;
       $path='picture/' .time() . $_FILES['avatar']['name'] ;
 
 
-     // $password=md5($password);
+      $password=md5($password);
       mysqli_query($conn,"
 INSERT INTO `klients` (  `k_id`,`k_pasts`, `k_parole`,
 `k_full_name`, `k_talrunis`, `k_atels`)

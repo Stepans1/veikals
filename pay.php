@@ -10,8 +10,32 @@ $password = "";
 
 $conn = mysqli_connect($servername, $username, $password, $database);
 $adrese=empty($_POST['adrese']) ? null : $_POST['adrese'];
+$numurs=$_POST['numurs'];
+$cvc=$_POST['cvc'];
+$vards=$_POST['vards'];
+$check=" ";
+if (preg_match('/[^\d\.,]/', $numurs)) { /* если есть лишний символ, то true, иначе false */
+    $_SESSION['message'] = 'Rinda var saturet tikai ciparus';
+    header('Location:apmaksa.php');
 
-if ($adrese===null)
+}
+if (strpos($vards,$check)!==false)
+{
+
+}
+else{
+    $_SESSION['message'] = 'Ievadiet Vārdu un Uzvārdu';
+
+    header('Location:apmaksa.php');
+}
+if (strlen($cvc)!=3)
+{
+    $_SESSION['message'] = 'CVC jābut 3 cipari';
+
+    header('Location:apmaksa.php');
+
+}
+if (empty($_POST['adrese']))
 {
     $_SESSION['message'] = 'Some fields are empty.';
     header('Location:apmaksa.php');
@@ -32,7 +56,7 @@ endforeach;
 echo 'User:';
 var_dump($_SESSION['user']['k_id']);
 $user=$_SESSION['user']['k_id'];
-echo $adrese;
+//echo $adrese;
 //endforeach;
 //debug($_SESSION['user']['k_id']);
 //echo $adres;
@@ -40,10 +64,14 @@ echo $adrese;
 //$adrese=$_POST['adrese'];
 foreach ($_SESSION['cart'] as $id=>$item):
     $qty=$item['qty'];
-mysqli_query($conn,"INSERT INTO `pasutijums` (`pa_id`, `kl_id`, `pa_adrese`, `p_id`, `qty`) VALUES (NULL, '$user', '$adrese', '$id', '$qty' )");
+mysqli_query($conn,"INSERT INTO `pasutijums` (`kl_id`,`pa_adrese`,`p_id`,`qty`) VALUES ('$user','$adrese','$id','$qty')");
+
 endforeach;
-mysqli_query($conn,"DELETE FROM `pasutijums` WHERE pa_adrese='0'");
-unset($_SESSION['cart']);
-unset($_SESSION['cart.qty']);
-unset($_SESSION['cart.sum']);
-header("location:test.php");
+mysqli_query($conn,"DELETE FROM `pasutijums` WHERE `pa_adrese`is null");
+if (!empty($_POST['adrese']))
+{
+    unset($_SESSION['cart']);
+    unset($_SESSION['cart.qty']);
+    unset($_SESSION['cart.sum']);
+    header("location:test.php");
+}

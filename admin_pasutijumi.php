@@ -39,31 +39,31 @@ session_start();
 </style>
 <body>
 <a href="admin_user.php"><h3>User</h3></a>
-<a href="admin_pasutijumi.php"><h3>Pasutijumi</h3></a>
+<a href="admin_preces.php"><h3>Preces</h3></a>
 <a  href="login.php">Logout</a>
 <table>
     <tr>
+        <th>pa_id</th>
+        <th>kl_id</th>
+        <th>pa_adrese</th>
         <th>p_id</th>
-        <th>p_nosaukums</th>
-        <th>p_svars</th>
-        <th>p_attels</th>
-        <th>p_cena</th>
-        <th>p_tips</th>
+        <th>qty</th>
+
     </tr>
     <?php
-    $preces = mysqli_query($conn,"SELECT * FROM `preces`");
-    $preces=mysqli_fetch_all($preces);
-    foreach ($preces as $prece)
+    $pas = mysqli_query($conn,"SELECT * FROM `pasutijums`");
+    $pas=mysqli_fetch_all($pas);
+    foreach ($pas as $pas)
     {
         echo '
 <tr>
-    <td>' .$prece[0]  . '</td>
-    <td>' .$prece[1]  . '</td>
-    <td>' .$prece[2]  . '</td>
-    <td>' .$prece[3]  . '</td>
-    <td>' .$prece[4]  . '</td>
-    <td>' .$prece[5]  . '</td>
-    <td><a href="update_prece.php?p_id='.$prece[0] .'">Update</a> </td>
+    <td>' .$pas[0]  . '</td>
+    <td>' .$pas[1]  . '</td>
+    <td>' .$pas[2]  . '</td>
+    <td>' .$pas[3]  . '</td>
+    <td>' .$pas[4]  . '</td>
+    
+    <td><a href="update_pasutijums.php?p_id='.$pas[0] .'">Update</a> </td>
 </tr>
 ';
     }
@@ -72,8 +72,8 @@ session_start();
 
 
 </table>
-<h1>Pievienot</h1>
-<form action="add_prece.php" method="post" enctype="multipart/form-data">
+<!--<h1>Pievienot</h1>-->
+<!--<form action="add_prece.php" method="post" enctype="multipart/form-data">
     <p>p_nosaukums</p>
     <input type="text" name="nosaukums">
     <p>p_svars</p>
@@ -86,9 +86,9 @@ session_start();
     <input type="text" name="tips">
 
     <button type="submit">Pievienot</button>
-</form>
+</form>-->
 <h1>Delete</h1>
-<form action="delete_prece.php" method="post" enctype="multipart/form-data">
+<form action="delete_pasutijums.php" method="post" enctype="multipart/form-data">
     <p>p_id</p>
     <input type="text" name="id">
 
@@ -97,3 +97,4 @@ session_start();
 
 </body>
 </html>
+

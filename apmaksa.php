@@ -27,7 +27,13 @@
             -moz-user-select: none;
             user-select: none;
         }
+        .msg{
 
+            border-radius: 2px;
+            padding: 10px;
+            text-align: center;
+            font-weight:bold ;
+        }
         @media (min-width: 768px) {
             .bd-placeholder-img-lg {
                 font-size: 3.5rem;
@@ -117,8 +123,9 @@
             </div>
             <div class="col-md-7 col-lg-8">
                 <h4 class="mb-3">Piegādes noformēšana </h4>
+                <form class="needs-validation" action="pay.php" method="post">
                     <div class="row g-3">
-                        <form class="needs-validation" action="pay.php" method="post">
+
 
                                 <div  class="col-12">
                                     <label for="address" class="form-label">Adrese</label>
@@ -137,7 +144,7 @@
                     <div class="row gy-3">
                         <div class="col-md-6">
                             <label for="cc-name" class="form-label">Vārds,uzvārds kartē </label>
-                            <input type="text" class="form-control" id="cc-name" placeholder="" required>
+                            <input type="text" name="vards" class="form-control" id="cc-name" placeholder="" required>
                             <small class="text-muted">Vārds uzvārds ka ir uzrakstīts kartē</small>
                             <div class="invalid-feedback">
                                 Ši lauks ir obligāts
@@ -145,8 +152,8 @@
                         </div>
 
                         <div class="col-md-6">
-                            <label for="cc-number" class="form-label">Kartes numurs</label>
-                            <input type="text" class="form-control" id="cc-number" placeholder="" required>
+                            <label for="cc-number" class="form-label">Konta numurs</label>
+                            <input type="text" name="numurs" class="form-control" id="cc-number" placeholder="" required>
                             <div class="invalid-feedback">
                                 Ši lauks ir obligāts
                             </div>
@@ -161,8 +168,8 @@
                         </div>
 
                         <div class="col-md-3">
-                            <label for="cc-cvv" class="form-label">CVV</label>
-                            <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+                            <label for="cc-cvv" class="form-label">CVC</label>
+                            <input type="text" name="cvc" class="form-control" id="cc-cvv" placeholder="" required>
                             <div class="invalid-feedback">
                                 Ši lauks ir obligāts
                             </div>
@@ -170,16 +177,15 @@
                     </div>
 
                     <hr class="my-4">
-                <button class="w-100 btn btn-primary btn-lg" type="submit">Noformēt</button>
-<p >
-    <?php
+                  <button class="w-100 btn btn-primary btn-lg" type="submit">Noformēt</button>
 
-    if(isset($_SESSION['message'])) { echo $_SESSION['message']; }
-    unset($_SESSION['message']);
-    ?>
-</p>
                     <!--<input  type="submit" class="form-control"  name="submit"href="pay.php"  >-->
-
+                    <p class="msg">
+                   <?php
+                          if(isset($_SESSION['message'])) { echo $_SESSION['message']; }
+                          unset($_SESSION['message']);
+                   ?>
+                    </p>
                    <!--<button class="w-100 btn btn-primary btn-lg" type="submit"><a href="pay.php" class="text-white">Noformēt</a></button>-->
                 </form>
             </div>

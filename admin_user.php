@@ -39,7 +39,8 @@ session_start();
 </style>
 <body>
 <a href="admin_preces.php"><h3>Preces</h3></a>
-<a href="#"><h3>Pasutijumi</h3></a>
+<a href="admin_pasutijumi.php"><h3>Pasutijumi</h3></a>
+<a href="login.php">Logout</a>
 <table>
 <tr>
     <th>k_id</th>
