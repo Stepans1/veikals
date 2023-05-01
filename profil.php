@@ -1,6 +1,16 @@
 <?=//session_start();
 include 'func.php';
-//debug($_SESSION['user']);?>
+//debug($_SESSION['user']);
+$servername = "localhost";
+$database = "veikals";
+$username = "root";
+$password = "";
+$k_id=$_SESSION['user']['k_id'];
+
+$conn = mysqli_connect($servername, $username, $password, $database);
+$klient=mysqli_query($conn,"SELECT `k_id`, `k_pasts`,  `k_parole`, `k_full_name`, `k_talrunis` FROM `klients` WHERE k_id='$k_id'");
+$klient=mysqli_fetch_assoc($klient);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,27 +50,36 @@ include 'func.php';
 </head>-->
 <body>
 
-    <form>
+
+    <form method="post" action="profil_update.php">
+        <input type="hidden" name="id" value="<?=$klient['k_id'] ?>">
         <lable>Pasts</lable>
-        <td><a href="#"><?= $_SESSION['user']['k_pasts'] ?></a><a style="color: red"  href="#">Nomainit pasts</a></td>
+        <input type="text" name="pasts" value="<?=$klient['k_pasts']  ?>">
         <h3>-------------------------</h3>
+
         <lable>Password</lable>
-        <td><a href="#"><?= $_SESSION['user']['k_parole'] ?></a><a style="color: red"  href="#">Nomainit paroli</a></td>
+        <input type="text" name="password" value="<?= $klient['k_parole']   ?>">
         <h3>-------------------------</h3>
+
         <lable>Vards Uzvards</lable>
-        <td><a href="#"><?= $_SESSION['user']['k_full_name'] ?></a></td>
+        <input type="text" name="name" value="<?= $klient['k_full_name'] ?> ">
         <h3>-------------------------</h3>
+
         <lable>Mob Talrunis</lable>
-        <td><a href="#"><?= $_SESSION['user']['k_talrunis'] ?></a><a style="color: red"  href="#">Nomainit numuru</a></td>
+        <input type="text" name="numurs" value="<?=  $klient['k_talrunis']?> ">
         <h3>-------------------------</h3>
-        <lable>Profila atels</lable>
-        <p><img src="picture/<?php try{ $_SESSION['user']['k_atels'];}catch (Throwable){echo 'Jums nau attela';} ?>" width="80px" height="80px" ><a style="color: red"  href="#">Nomainit attelu</a></p>
+
+
         <p>
             Jus negribat neko mainit? - <a href="test.php">Atgriezties sakumlapa</a>
         </p>
-
+<button type="submit">Update</button>
     </form>
-
+    <p>
+    <?php
+    if(isset($_SESSION['message'])) { echo $_SESSION['message']; }
+    unset($_SESSION['message']);
+    ?></p>
 <script src="bootstrap/bootstrap.bundle.min.js"></script>
 </body>
 </html>

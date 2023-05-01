@@ -85,7 +85,7 @@
                     <h4 class="text-white">Darbibas</h4>
                     <ul class="list-unstyled">
                         <li><a href="test.php" class="text-white">Home</a></li>
-                        <li><a href="#" class="text-white">Grozs</a></li>
+
                         <li><a href="parastie_prod.php" class="text-white">Parastie produkti</a></li>
                         <li><a href="darzeni.php" class="text-white">Darzeni</a></li>
                     </ul>
@@ -212,10 +212,10 @@
                     <div class="card shadow-sm">
                         <img src="picture/big_552521.jpg" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text>
                         <div class="card-body">
-                            <p class="card-text">Flotes makaroni</p>
+                            <p class="card-text">Coming soon</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">recepts</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Coming soon</button>
 
                                 </div>
 
@@ -227,10 +227,10 @@
                     <div class="card shadow-sm">
                         <img src="picture/plov.jpg" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title></title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>
                         <div class="card-body">
-                            <p class="card-text">Plov</p>
+                            <p class="card-text">Coming soon</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">recepts</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Coming soon</button>
 
                                 </div>
 

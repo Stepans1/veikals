@@ -103,8 +103,7 @@ session_start();
                     </li>
                 </ul>
                 <form class="d-flex" role="search">
-
-                    <button class="btn btn-outline-success" href="">Korzina</button>
+<a href="login.php">Logout</a>
                 </form>
             </div>
         </div>
@@ -137,7 +136,7 @@ session_start();
 
                 <div class="container">
                     <div class="carousel-caption">
-                        <h1>Tikai zvaigie produkti.</h1>
+                        <h1>Tikai svaigie produkti.</h1>
                         <p>Saviem klientiem mēs piedavam tikai saigie dārzeni</p>
                         <p><a class="btn btn-lg btn-primary" href="#">Iepazinos pats</a></p>
                     </div>
@@ -180,14 +179,14 @@ session_start();
                 <img src="picture/big_552521.jpg"  class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
                 <h2 class="fw-normal">Flotes makaroni</h2>
                 <p>Ideāla izvele ja ir maz laiku </p>
-                <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+                <p><a class="btn btn-secondary" href="recepti.php">View details &raquo;</a></p>
             </div><!-- /.col-lg-4 -->
             <div class="col-lg-4">
                <!-- <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>-->
                 <img src="picture/plov.jpg"  class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
                 <h2 class="fw-normal">Plov</h2>
                 <p>Idealais piedavajums priekš Gymrats</p>
-                <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+                <p><a class="btn btn-secondary" href="recepti.php">View details &raquo;</a></p>
             </div><!-- /.col-lg-4 -->
             <div class="col-lg-4">
                <!-- <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>-->
@@ -195,7 +194,7 @@ session_start();
                 <img src="picture/kuskus.jpg"  class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
                 <h2 class="fw-normal">Kus Kus</h2>
                 <p>Interesants variants ja gribi pamēģinat kaut ko jaunu</p>
-                <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+                <p><a class="btn btn-secondary" href="recepti.php">View details &raquo;</a></p>
             </div><!-- /.col-lg-4 -->
         </div><!-- /.row -->
 

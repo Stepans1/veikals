@@ -96,7 +96,7 @@ require_once 'karzina.php'
                     <h4 class="text-white">Darbibas</h4>
                     <ul class="list-unstyled">
                         <li><a href="test.php" class="text-white">Home</a></li>
-                        <li><a href="#" class="text-white">Grozs</a></li>
+
                         <li><a href="darzeni.php" class="text-white">Dārzeņi</a></li>
                         <li><a href="recepti.php" class="text-white">Recepti</a></li>
                     </ul>

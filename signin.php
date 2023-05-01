@@ -13,7 +13,9 @@ $email = empty($_POST['login']) ? null : $_POST['login'];
 $password = empty($_POST['password']) ? null : $_POST['password'];
 
 //$password=md5($password);
-$stmt = mysqli_query($conn,"SELECT `k_id`,`k_pasts`,`k_atels`,`k_full_name`,`k_parole`,`k_talrunis` FROM `klients` where `k_pasts` like '%$email' and `k_parole` like '%$password'");
+$stmt = mysqli_query($conn,"SELECT `k_id`,`k_pasts`,`k_atels`,`k_full_name`,`k_parole`,`k_talrunis`,`k_loma` FROM `klients` where `k_pasts` like '%$email' and `k_parole` like '%$password'");
+
+
 if ($email==="admin@admin.lv")
 {
     header('Location:admin_user.php');
@@ -25,6 +27,7 @@ if (empty($_POST['password'])  || empty($_POST['login']))
     header('Location:login.php');
     exit();
 }
+
 if (mysqli_num_rows($stmt) > 0 or $email==="admin@admin.lv")
 {
     $user=mysqli_fetch_assoc($stmt);

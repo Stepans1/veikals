@@ -7,7 +7,7 @@ $password = "";
 
 
 $conn = mysqli_connect($servername, $username, $password, $database);
-$user=mysqli_query($conn,"SELECT `k_id`, `k_full_name`, `k_pasts`, `k_parole`, `k_talrunis` FROM `klients` WHERE k_id='$user_id'");
+$user=mysqli_query($conn,"SELECT `k_id`, `k_full_name`, `k_pasts`, `k_parole`, `k_talrunis`,`k_loma` FROM `klients` WHERE k_id='$user_id'");
 $user=mysqli_fetch_assoc($user);
 ?>
 
@@ -31,6 +31,8 @@ $user=mysqli_fetch_assoc($user);
     <input type="text" name="password" value="<?=$user['k_parole'] ?>">
     <p>k_talrunis</p>
     <input type="text" name="phone" value="<?=$user['k_talrunis'] ?>">
+    <p>k_loma</p>
+    <input type="text" name="loma" value="<?=$user['k_loma'] ?>">
 
     <button type="submit">Update</button><br> <br>
     <a href="admin_user.php">Back</a>

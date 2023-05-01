@@ -9,37 +9,51 @@ $password = "";
 
 
 $conn = mysqli_connect($servername, $username, $password, $database);
+$derigs=$_POST['derigs'];
 $adrese=empty($_POST['adrese']) ? null : $_POST['adrese'];
 $numurs=$_POST['numurs'];
 $cvc=$_POST['cvc'];
 $vards=$_POST['vards'];
 $check=" ";
-if (preg_match('/[^\d\.,]/', $numurs)) { /* если есть лишний символ, то true, иначе false */
-    $_SESSION['message'] = 'Rinda var saturet tikai ciparus';
+if (preg_match('/[^\d\.,]/', $derigs)) { /* если есть лишний символ, то true, иначе false */
+    $_SESSION['message'] = ' Lauks "derigs lidz" var saturet tikai ciparus';
     header('Location:apmaksa.php');
-
+    exit;
 }
+
+if (preg_match('/[^\d\.,]/', $numurs)) { /* если есть лишний символ, то true, иначе false */
+    $_SESSION['message'] = ' Kartes numurs var saturet tikai ciparus';
+    header('Location:apmaksa.php');
+exit;
+}
+if (preg_match('/[^\d\.,]/', $cvc)) { /* если есть лишний символ, то true, иначе false */
+    $_SESSION['message'] = 'CVC  var saturet tikai ciparus';
+    header('Location:apmaksa.php');
+    exit;
+}
+
 if (strpos($vards,$check)!==false)
 {
 
 }
 else{
-    $_SESSION['message'] = 'Ievadiet Vārdu un Uzvārdu';
+    $_SESSION['message'] = 'Ievadiet Vārdu UN Uzvārdu';
 
     header('Location:apmaksa.php');
+    exit;
 }
 if (strlen($cvc)!=3)
 {
     $_SESSION['message'] = 'CVC jābut 3 cipari';
 
     header('Location:apmaksa.php');
-
+exit;
 }
 if (empty($_POST['adrese']))
 {
     $_SESSION['message'] = 'Some fields are empty.';
     header('Location:apmaksa.php');
-
+exit;
 }
 //$adres = empty($_POST['adrese1']) ? null : $_POST['adrese1'];
 //$adrese=isset($_GET['adrese'])? null:$_GET['adrese'] ;
@@ -67,7 +81,7 @@ foreach ($_SESSION['cart'] as $id=>$item):
 mysqli_query($conn,"INSERT INTO `pasutijums` (`kl_id`,`pa_adrese`,`p_id`,`qty`) VALUES ('$user','$adrese','$id','$qty')");
 
 endforeach;
-mysqli_query($conn,"DELETE FROM `pasutijums` WHERE `pa_adrese`is null");
+mysqli_query($conn,"DELETE FROM `pasutijums` WHERE `pa_adrese`='' ");
 if (!empty($_POST['adrese']))
 {
     unset($_SESSION['cart']);

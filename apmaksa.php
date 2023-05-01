@@ -152,7 +152,7 @@
                         </div>
 
                         <div class="col-md-6">
-                            <label for="cc-number" class="form-label">Konta numurs</label>
+                            <label for="cc-number" class="form-label">Kartes numurs</label>
                             <input type="text" name="numurs" class="form-control" id="cc-number" placeholder="" required>
                             <div class="invalid-feedback">
                                 Ši lauks ir obligāts
@@ -161,7 +161,9 @@
 
                         <div class="col-md-3">
                             <label for="cc-expiration" class="form-label">Derīgs līdz</label>
-                            <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+                            <input type="text" name="derigs" class="form-control" id="cc-expiration" placeholder="MMYY" required>
+                            <small class="text-muted">Bez "/" simvola :MM/YY</small>
+
                             <div class="invalid-feedback">
                                 Ši lauks ir obligāts
                             </div>

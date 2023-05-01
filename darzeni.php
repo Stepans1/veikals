@@ -95,7 +95,7 @@ require_once 'karzina.php'
                     <h4 class="text-white">Darbibas</h4>
                     <ul class="list-unstyled">
                         <li><a href="test.php" class="text-white">Home</a></li>
-                        <li><a href="#" class="text-white">Grozs</a></li>
+
                         <li><a href="parastie_prod.php" class="text-white">Parastie produkti</a></li>
                         <li><a href="recepti.php" class="text-white">Recepti</a></li>
                     </ul>
@@ -123,7 +123,7 @@ require_once 'karzina.php'
                 <h1 class="fw-light">Dārzeņi</h1>
                 <p class="lead text-muted">Šeit jus varat iveleties svaigus dārzeņus un ne tikai</p>
                 <table align="left">
-                    <tr><td>test tabl</td></tr>
+
                 </table>
                 <p>
                     <button  class="btn btn-danger " data-bs-toggle="modal" data-bs-target="#modalExample">Grozs<span class="badge"><?=$_SESSION['cart.qty']??0 ?></span></button>

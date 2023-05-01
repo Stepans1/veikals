@@ -12,7 +12,7 @@
     $conn = mysqli_connect($servername, $username, $password, $database);
 
     $errors = [];
-
+$check=" ";
     $email = empty($_POST['email']) ? null : $_POST['email'];
     $password = empty($_POST['password']) ? null : $_POST['password'];
     $password_check = empty($_POST['password_check']) ? null : $_POST['password_check'];
@@ -49,6 +49,31 @@ $bool=true;
           break;
       }
   }
+  //проверка вписанных данных
+if (strlen($password)<8)
+{
+    $_SESSION['message'] = 'Parolē jābut minimums 8 simvoli';
+
+    header('Location:reg.php');
+    exit;
+}
+if (preg_match('/[^\d\.,]/', $phone)) { /* если есть лишний символ, то true, иначе false */
+    $_SESSION['message'] = 'Mobilais numurs  var saturet tikai ciparus';
+    header('Location:reg.php');
+    exit;
+}
+if (strpos($full_name,$check)!==false)
+{
+
+}
+else{
+    $_SESSION['message'] = 'Ievadiet Vārdu UN Uzvārdu';
+
+    header('Location:reg.php');
+    exit;
+}
+
+//  end
 
 
   if ($password === $password_check && !empty($_POST['password'] && !empty($_POST['phone']) && !empty($_POST['email']) && !empty($_POST['full_name'])))
@@ -57,11 +82,11 @@ $bool=true;
       $path='picture/' .time() . $_FILES['avatar']['name'] ;
 
 
-      $password=md5($password);
+     // $password=md5($password);
       mysqli_query($conn,"
 INSERT INTO `klients` (  `k_id`,`k_pasts`, `k_parole`,
-`k_full_name`, `k_talrunis`, `k_atels`)
-VALUES (NULL, ' $email', '$password', ' $full_name', '$phone ', ' $path')");
+`k_full_name`, `k_talrunis`, `k_atels`,`k_loma`)
+VALUES (NULL, ' $email', '$password', ' $full_name', '$phone ', ' $path',0)");
 
 //      mysqli_close($conn);
       header('Location:reg.php');

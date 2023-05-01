@@ -49,6 +49,7 @@ session_start();
     <th>k_parole</th>
     <th>k_talrunis</th>
     <th>k_atels</th>
+    <th>k_loma</th>
 </tr>
     <?php
     $users = mysqli_query($conn,"SELECT * FROM `klients`");
@@ -63,6 +64,7 @@ echo '
     <td>' .$user[3]  . '</td>
     <td>' .$user[4]  . '</td>
     <td>' .$user[5]  . '</td>
+    <td>' .$user[6]  .'</td>
     <td><a href="update_user.php?k_id='.$user[0] .'">Update</a> </td>
 </tr>
 ';
